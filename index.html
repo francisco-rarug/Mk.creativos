@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mk.creativos</title>
+    <link rel="shortcut icon" href="/recursos/Icono.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <h1 class="logo">
+                mk<span>.creativos</span>
+            </h1>
+            <div class="socials">
+                <a href="https://www.tiktok.com/@mk.creativos1?is_from_webapp=1&sender_device=pc" class="btn ghost">
+                    <img src="/recursos/tik-tok.png" alt="TikTok">
+                    <span>TikTok</span>
+                </a>
+
+                <a href="https://www.instagram.com/mk.creativos/" class="btn gradient">
+                    <img src="/recursos/instagram.png" alt="Instagram">
+                    <span>Instagram</span>
+                </a>
+
+                <a href="https://wa.me/1131752110" class="btn whatsapp">
+                    <img src="/recursos/whatsapp.png" alt="WhatsApp">
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>
+            Bienvenido a
+            <span>mk.creativos</span>
+        </h2>
+        <p>Descubre nuestros productos creativos y únicos</p>
+    </section>
+
+    <section class="categories container">
+        <button class="category active" data-category="todos">Todos</button>
+        <button class="category" data-category="cuadros">Cuadros</button>
+        <button class="category" data-category="stickerts">Stickers</button>
+        <button class="category" data-category="agendas">Agendas/Cuadernos</button>
+        <button class="category" data-category="otros">Otros</button>
+    </section>
+
+    <section class="products container" id="products"></section>
+    <div class="load-more-container">
+        <button id="loadMore" class="load-more-btn">Ver más</button>
+    </div>
+
+    <footer class="footer">
+        © 2026 mk.creativos - Todos los derechos reservados
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
