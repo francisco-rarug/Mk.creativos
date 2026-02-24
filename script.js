@@ -284,13 +284,18 @@ categoryButtons.forEach(btn => {
 
 renderProducts(savedCategory);
 
-let resizeTimer;
+let lastIsMobile = window.innerWidth <= 768;
 
 window.addEventListener("resize", () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    renderProducts(currentCategory);
-  }, 300);
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile === lastIsMobile) return;
+
+  lastIsMobile = isMobile;
+
+  if (showingAll) return;
+
+  renderProducts(currentCategory);
 });
 
 productsContainer.addEventListener("click", (e) => {
