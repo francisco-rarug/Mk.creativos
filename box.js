@@ -11,3 +11,13 @@ document.getElementById("boxImage").src = box.image;
 document.getElementById("boxImage").alt = box.name;
 document.getElementById("boxDescription").textContent = box.longDescription;
 document.getElementById("boxVideo").src = box.video;
+
+const video = document.getElementById("boxVideo");
+
+video.muted = true;
+video.volume = 0;
+
+video.addEventListener("volumechange", () => {
+  video.muted = true;
+  video.volume = 0;
+});

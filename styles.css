@@ -400,6 +400,16 @@ body {
     font-size: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .card {
     animation: none;
