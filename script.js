@@ -127,6 +127,20 @@ const products = [
     image: "recursos/StickertsEscolares.jpeg",
     category: "stickerts",
   },
+  {
+    id: "box-san-valentin",
+    name: "🎁 Box San Valentín",
+    description: "Un box especial con productos personalizados, pensado para sorprender.",
+    price: "$30.000",
+    image: "recursos/Box-SanValentin.jpeg",
+    category: "box",
+    isBox: true,
+    video: "recursos/Video-BoxSanValentin.mp4",
+    longDescription: `
+Este Box San Valentín fue creado para expresar amor de una manera única y especial.
+Incluye productos personalizados cuidadosamente seleccionados para transmitir emociones.
+`
+  },
 ];
 
 const productsContainer = document.getElementById("products");
@@ -143,10 +157,9 @@ function getLimit() {
   return window.innerWidth <= 768 ? MOBILE_LIMIT : DESKTOP_LIMIT;
 }
 
-function createCard(product, delay = 0) {
+function createCard(product) {
   const card = document.createElement("div");
-  card.className = "card fade-in";
-  card.style.animationDelay = `${delay}ms`;
+  card.className = "card";
 
   card.innerHTML = `
     <img src="${product.image}" alt="${product.name}" loading="lazy">
@@ -154,6 +167,12 @@ function createCard(product, delay = 0) {
       <h3>${product.name}</h3>
       <p>${product.description}</p>
       <div class="price">${product.price}</div>
+
+      ${
+        product.isBox
+          ? `<button class="box-btn" data-box='${JSON.stringify(product)}'>Ver Box</button>`
+          : ""
+      }
     </div>
   `;
 
@@ -201,10 +220,14 @@ loadMoreBtn.addEventListener("click", () => {
 
 categoryButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    categoryButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    renderProducts(btn.dataset.category);
-  });
+  const category = btn.dataset.category;
+
+  localStorage.setItem("activeCategory", category);
+
+  categoryButtons.forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderProducts(category);
+});
 });
 
 const originalTitle = "mk.creativos";
@@ -250,8 +273,31 @@ function resetTitleAndTimers() {
 
 resetTitleAndTimers();
 
-renderProducts("todos");
+const savedCategory = localStorage.getItem("activeCategory") || "todos";
+
+categoryButtons.forEach(btn => {
+  btn.classList.toggle(
+    "active",
+    btn.dataset.category === savedCategory
+  );
+});
+
+renderProducts(savedCategory);
+
+let resizeTimer;
 
 window.addEventListener("resize", () => {
-  renderProducts(currentCategory);
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderProducts(currentCategory);
+  }, 300);
+});
+
+productsContainer.addEventListener("click", (e) => {
+  const btn = e.target.closest(".box-btn");
+  if (!btn) return;
+
+  const boxData = JSON.parse(btn.dataset.box);
+  localStorage.setItem("selectedBox", JSON.stringify(boxData));
+  window.location.href = "box.html";
 });
