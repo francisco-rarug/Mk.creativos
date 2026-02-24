@@ -1,5 +1,8 @@
 const storedBox = localStorage.getItem("selectedBox");
 
+const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 if (!storedBox) {
   window.location.href = "index.html";
 }
@@ -37,7 +40,7 @@ if (box.video && video) {
 
 const whatsappBtn = document.getElementById("whatsappBtn");
 
-const phone = "5491112345678";
+const phone = "112345678";
 const message = encodeURIComponent(
   `Hola 😊 Quiero consultar por el ${box.name}. ¿Me pasás info?`
 );
