@@ -1,147 +1,23 @@
-const products = [
-  {
-    id: 1,
-    name: "🎵 Cuadro Spotify Personalizado",
-    description: "Tu canción favorita convertida en un recuerdo único y decorativo, totalmente personalizado",
-    price: "$22.500",
-    image: "recursos/Cuadro.jpeg",
-    category: "cuadros",
-  },
-  {
-    id: 2,
-    name: "📔 Agenda Personalizada",
-    description: "Organizá tus días con estilo. Diseñada a tu gusto, ideal para planificar, anotar y acompañarte todo el año.",
-    price: "$15.000",
-    image: "recursos/Agenda1.jpeg",
-    category: "agendas",
-  },
-  {
-    id: 3,
-    name: "✨ Plancha de 20 Stickers Personalizados",
-    description: "Diseños únicos hechos a tu medida, ideales para decorar, regalar o darle tu estilo a todo.",
-    price: "$4.500",
-    image: "recursos/Stickert1.jpeg",
-    category: "stickerts",
-  },
-  {
-    id: 4,
-    name: "📘 Álbum de Figuritas Personalizado (32 figuritas)",
-    description: "Un recuerdo único y divertido, creado a tu medida con 32 figuritas personalizadas para coleccionar y compartir.",
-    price: "$15.000",
-    image: "recursos/AlbumFigu2.jpeg",
-    category: "otros",
-  },
-  {
-    id: 5,
-    name: "🔑 Llaveros Personalizados",
-    description: "Un detalle práctico y único, diseñado a tu gusto para llevar tu estilo a todos lados.",
-    price: "$2.500",
-    image: "recursos/Llavero3.jpeg",
-    category: "otros",
-  },
-  {
-    id: 6,
-    name: "📸 Polaroids Personalizadas (10 unidades)",
-    description: "Tus mejores recuerdos impresos con estilo retro, ideales para regalar, decorar o atesorar.",
-    price: "$6.000",
-    image: "recursos/Polaroid.jpeg",
-    category: "otros",
-  },
-  {
-    id: 7,
-    name: "🗓️ Calendario Personalizado",
-    description: "Organizá tu año con tus fotos y diseño favorito, uniendo funcionalidad y recuerdos en un solo producto.",
-    price: "$1.500",
-    image: "recursos/Calendarios.jpeg",
-    category: "otros",
-  },
-  {
-    id: 8,
-    name: "🃏 Juego de UNO Personalizado",
-    description: "El clásico de cartas con tu propio diseño, ideal para regalar y disfrutar momentos únicos en cada partida.",
-    price: "$12.000",
-    image: "recursos/Uno.jpeg",
-    category: "otros",
-  },
-  {
-    id: 9,
-    name: "💞 Llaveros para Compartir",
-    description: "Un detalle especial en partes que se complementan, ideal para simbolizar vínculos y llevar siempre cerca a esa persona.",
-    price: "$6.000",
-    image: "recursos/Llavero1.jpeg",
-    category: "otros",
-  },
-  {
-    id: 10,
-    name: "💧 Stickers para Termo de vinilo (20 unidades)",
-    description: "Stickers personalizados y resistentes al agua, ideales para decorar tu termo y acompañarte en el día a día.",
-    price: "$7.000",
-    image: "recursos/StickertTermo.jpeg",
-    category: "stickerts",
-  },
-  {
-    id: 11,
-    name: "📒 Cuadernos Personalizados",
-    description: "Diseñados a tu gusto, ideales para escribir, estudiar o regalar con un estilo único.",
-    price: "$5.000",
-    image: "recursos/Cuaderno1.jpeg",
-    category: "agendas",
-  },
-  {
-    id: 12,
-    name: "📖 Álbum de Fotos Personalizado",
-    description: "Un espacio único para guardar y revivir tus mejores recuerdos, diseñado especialmente para vos.",
-    price: "$20.000",
-    image: "recursos/Album Fotos.jpeg",
-    category: "otros",
-  },
-  {
-    id: 13,
-    name: "🗒️ Agendas de Anime",
-    description: "Organizá tu día a día con tus personajes favoritos, combinando estilo, color y pasión por el anime.",
-    price: "$15.000",
-    image: "recursos/Agenda2.jpeg",
-    category: "agendas",
-  },
-  {
-    id: 14,
-    name: "💧 Stickers Resistentes al Agua (20 unidades)",
-    description: "Diseños durables y personalizados, ideales para termos, botellas y superficies que acompañan tu día a día",
-    price: "$6.000",
-    image: "recursos/Stickert2.jpeg",
-    category: "stickerts",
-  },
-  {
-    id: 15,
-    name: "🖼️🔑 Cuadro + Llavero Personalizados",
-    description: "El combo ideal para regalar: un diseño único para decorar y un llavero a juego para llevar siempre con vos",
-    price: "$25.000",
-    image: "recursos/Cuadro2.jpeg",
-    category: "cuadros",
-  },
-  {
-    id: 16,
-    name: "✏️🎒 Stickers para Útiles Escolares",
-    description: "Stickers personalizados ideales para identificar y decorar cuadernos, carpetas y útiles con estilo propio.",
-    price: "$3.000",
-    image: "recursos/StickertsEscolares.jpeg",
-    category: "stickerts",
-  },
-  {
-    id: "box-san-valentin",
-    name: "🎁 Box San Valentín",
-    description: "Un box especial con productos personalizados, pensado para sorprender.",
-    price: "$30.000",
-    image: "recursos/Box-SanValentin.jpeg",
-    category: "box",
-    isBox: true,
-    video: "recursos/Video-BoxSanValentin.mp4",
-    longDescription: `
-Este Box San Valentín fue creado para expresar amor de una manera única y especial.
-Incluye productos personalizados cuidadosamente seleccionados para transmitir emociones.
-`
-  },
-];
+let products = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProducts();
+});
+
+async function loadProducts() {
+  try {
+    const response = await fetch("data/productos.json");
+    const data = await response.json();
+
+    products = data.products;
+
+    const savedCategory = localStorage.getItem("activeCategory") || "todos";
+    renderProducts(savedCategory);
+
+  } catch (error) {
+    console.error("Error cargando productos:", error);
+  }
+}
 
 const productsContainer = document.getElementById("products");
 const categoryButtons = document.querySelectorAll(".category");
@@ -168,16 +44,16 @@ function createCard(product) {
       <p>${product.description}</p>
       <div class="price">${product.price}</div>
 
-      ${
-        product.isBox
-          ? `<button class="box-btn" data-box='${JSON.stringify(product)}'>Ver Box</button>`
-          : ""
-      }
+      ${product.isBox
+      ? `<button class="box-btn" data-box='${JSON.stringify(product)}'>Ver Box</button>`
+      : ""
+    }
     </div>
   `;
 
   productsContainer.appendChild(card);
 }
+
 
 function renderProducts(category) {
   productsContainer.innerHTML = "";
@@ -220,14 +96,14 @@ loadMoreBtn.addEventListener("click", () => {
 
 categoryButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-  const category = btn.dataset.category;
+    const category = btn.dataset.category;
 
-  localStorage.setItem("activeCategory", category);
+    localStorage.setItem("activeCategory", category);
 
-  categoryButtons.forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
-  renderProducts(category);
-});
+    categoryButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderProducts(category);
+  });
 });
 
 const originalTitle = "mk.creativos";
@@ -306,3 +182,28 @@ productsContainer.addEventListener("click", (e) => {
   localStorage.setItem("selectedBox", JSON.stringify(boxData));
   window.location.href = "box.html";
 });
+
+
+document.title = `${box.name} | mk.creativos`;
+
+const metaDescription =
+  document.querySelector("meta[name='description']") ||
+  document.createElement("meta");
+
+metaDescription.name = "description";
+metaDescription.content = box.description;
+document.head.appendChild(metaDescription);
+
+const ogTitle = document.createElement("meta");
+ogTitle.setAttribute("property", "og:title");
+ogTitle.content = box.name;
+
+const ogDesc = document.createElement("meta");
+ogDesc.setAttribute("property", "og:description");
+ogDesc.content = box.description;
+
+const ogImage = document.createElement("meta");
+ogImage.setAttribute("property", "og:image");
+ogImage.content = box.image;
+
+document.head.append(ogTitle, ogDesc, ogImage);

@@ -137,7 +137,7 @@ body {
 }
 
 .card {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   overflow: hidden;
   transition: transform .3s;
@@ -186,14 +186,21 @@ body {
   margin: 40px 0 80px;
 }
 
+
+
 .load-more-btn {
-  padding: 14px 36px;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+  padding: 14px 22px;
+
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: linear-gradient(to right, #8b5cf6, #ec4899);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
@@ -208,22 +215,53 @@ body {
   transform: scale(0.96);
 }
 
-/* ===== CATEGORIA BOX DESTACADA ===== */
+.video-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.video-wrapper video {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+}
+
+.play-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .category-box {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    #facc15,
-    #f59e0b,
-    #eab308
-  );
+  background: linear-gradient(135deg,
+      #facc15,
+      #f59e0b,
+      #eab308);
   color: #4c1d95;
   font-weight: 900;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
 }
 
-/* Brillo animado */
 .category-box::after {
   content: "";
   position: absolute;
@@ -231,12 +269,10 @@ body {
   left: -150%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.7),
-    transparent
-  );
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.7),
+      transparent);
   animation: shine 2.8s infinite;
 }
 
@@ -244,15 +280,16 @@ body {
   0% {
     left: -150%;
   }
+
   60% {
     left: 150%;
   }
+
   100% {
     left: 150%;
   }
 }
 
-/* Cuando está activa */
 .category-box.active {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #78350f;
@@ -271,12 +308,28 @@ body {
 
 .box-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+
 .box-landing {
   padding: 80px 16px;
   max-width: 900px;
   animation: fadeUp 0.8s ease forwards;
+}
+
+#box-description p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.box-list {
+  margin: 12px 0 20px;
+  padding-left: 20px;
+}
+
+.box-list li {
+  margin-bottom: 8px;
+  list-style: none;
 }
 
 .box-title {
@@ -298,7 +351,7 @@ body {
   width: 100%;
   max-width: 420px;
   border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .box-description {
@@ -319,7 +372,7 @@ body {
   width: 100%;
   max-width: 720px;
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
 .box-back {
@@ -327,19 +380,46 @@ body {
   justify-content: center;
 }
 
-/* Animación suave */
+.box-cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+  padding: 14px 22px;
+  background: #25d366;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
 @keyframes fadeUp {
   from {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* MOBILE */
 @media (max-width: 640px) {
   .box-title {
     font-size: 36px;
@@ -349,6 +429,7 @@ body {
     font-size: 16px;
   }
 }
+
 .footer {
   text-align: center;
   padding: 24px;
@@ -376,6 +457,7 @@ body {
   .socials span {
     display: none;
   }
+
   .hero h2 {
     font-size: 42px;
   }
@@ -402,6 +484,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
   *,
   *::before,
   *::after {
@@ -415,7 +498,3 @@ body {
     animation: none;
   }
 }
-
-
-
-

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Box Especial | mk.creativos</title>
+    <link rel="shortcut icon" href="/recursos/caja.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,7 +13,25 @@
 
     <header class="header">
         <div class="container header-content">
-            <h1 class="logo">mk<span>.creativos</span></h1>
+            <h1 class="logo">
+                mk<span>.creativos</span>
+            </h1>
+            <div class="socials">
+                <a href="https://www.tiktok.com/@mk.creativos1?is_from_webapp=1&sender_device=pc" class="btn ghost">
+                    <img src="/recursos/tik-tok.png" alt="TikTok">
+                    <span>TikTok</span>
+                </a>
+
+                <a href="https://www.instagram.com/mk.creativos/" class="btn gradient">
+                    <img src="/recursos/instagram.png" alt="Instagram">
+                    <span>Instagram</span>
+                </a>
+
+                <a href="https://wa.me/1131752110" class="btn whatsapp">
+                    <img src="/recursos/whatsapp.png" alt="WhatsApp">
+                    <span>WhatsApp</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -28,10 +47,20 @@
 
         <div class="box-video-wrapper">
             <video id="boxVideo" controls muted playsinline disablepictureinpicture></video>
+            <button id="playBtn" class="play-btn">▶</button>
         </div>
 
+        <!-- <div class="box-cta">
+            <a id="whatsappBtn" class="whatsapp-btn" target="_blank" rel="noopener">
+                💬 Consultar por WhatsApp
+            </a>
+        </div> -->
+
         <div class="box-back">
-            <a href="index.html" class="load-more-btn">Volver a la tienda</a>
+            <a id="whatsappBtn" class="whatsapp-btn" target="_blank" rel="noopener">
+                💬 Consultar por WhatsApp
+            </a>
+            <a href="index.html" class="load-more-btn">🔙 Volver a la tienda</a>
         </div>
 
     </main>
