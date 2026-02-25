@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="container header-content">
-             <h1 class="logo">
+            <h1 class="logo">
                 <a href="index.html" class="logo-link">
                     mk<span>.creativos</span>
                 </a>
@@ -78,6 +78,10 @@
                 por los detalles y el deseo de ofrecer productos que inspiren, organicen y acompañen momentos
                 especiales.
             </p>
+
+            <a href="#contacto" class="about-btn">
+                ✉️ Quiero hacer mi pedido
+            </a>
         </section>
 
         <section class="about-section">
@@ -127,11 +131,11 @@
             </div>
         </section>
 
-        <section class="about-section">
+        <section class="about-section" id="contacto">
             <h2 class="section-title">Envíos & Ubicación</h2>
 
             <ul class="box-list">
-                <li>📦 Envíos por Avellaneda y alrrededores</li>
+                <li>📦 Envíos por Avellaneda y alrededores</li>
                 <li>⏱ Tiempos de entrega según ubicación</li>
                 <li>📍 Emprendimiento ubicado en Buenos aires - Avellaneda</li>
                 <li>💬 Coordinación personalizada por WhatsApp</li>
@@ -143,7 +147,7 @@
 
             <form id="contactForm" class="contact-form" action="https://formspree.io/f/xdalydvv" method="POST">
                 <input type="text" name="name" placeholder="Tu nombre" required />
-                <input type="email" name="email" placeholder="Tu email" required />
+                <input type="tel" name="phone" placeholder="Tu telefono" required />
                 <textarea name="message" rows="5" placeholder="Escribí tu consulta..." required></textarea>
 
                 <button type="submit" class="load-more-btn">
@@ -172,121 +176,120 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="box.js"></script>
     <script>
-    const form = document.getElementById("contactForm");
+        const form = document.getElementById("contactForm");
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const name = form.querySelector('input[name="name"]').value.trim();
-        const email = form.querySelector('input[name="email"]').value.trim();
-        const message = form.querySelector('textarea[name="message"]').value.trim();
+            const name = form.querySelector('input[name="name"]').value.trim();
+            const phone = form.querySelector('input[name="phone"]').value.trim();
+            const message = form.querySelector('textarea[name="message"]').value.trim();
 
-        const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}$/;
+            const phoneRegex = /^[0-9]{8,15}$/;
 
-        if (!name || !email || !message) {
-            Swal.fire({
-                icon: "warning",
-                title: "Campos incompletos",
-                text: "Por favor completá todos los campos.",
-                confirmButtonColor: "#facc15",
-                background: "#1f2933",
-                color: "#ffffff"
-            });
-            return;
-        }
-
-        if (!nameRegex.test(name)) {
-            Swal.fire({
-                icon: "error",
-                title: "Nombre inválido",
-                text: "El nombre solo puede contener letras y espacios.",
-                confirmButtonColor: "#ef4444",
-                background: "#1f2933",
-                color: "#ffffff"
-            });
-            return;
-        }
-
-        if (!emailRegex.test(email)) {
-            Swal.fire({
-                icon: "error",
-                title: "Email inválido",
-                text: "Ingresá un correo electrónico válido.",
-                confirmButtonColor: "#ef4444",
-                background: "#1f2933",
-                color: "#ffffff"
-            });
-            return;
-        }
-
-        if (message.length < 10) {
-            Swal.fire({
-                icon: "warning",
-                title: "Mensaje muy corto",
-                text: "Por favor escribí un mensaje un poco más detallado.",
-                confirmButtonColor: "#facc15",
-                background: "#1f2933",
-                color: "#ffffff"
-            });
-            return;
-        }
-
-        const isMobile = window.innerWidth <= 768;
-        const messageText = isMobile
-            ? "¡Mensaje enviado! 💜 Te respondemos por WhatsApp en breve."
-            : "¡Mensaje enviado con éxito! 💜 Te responderemos lo antes posible.";
-
-        Swal.fire({
-            title: "Enviando mensaje...",
-            text: "Por favor esperá un momento",
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            background: "linear-gradient(135deg, #4c1d95, #831843, #9a3412)",
-            color: "#ffffff",
-            didOpen: () => Swal.showLoading()
-        });
-
-        const formData = new FormData(form);
-
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: formData,
-                headers: { Accept: "application/json" }
-            });
-
-            Swal.close();
-
-            if (response.ok) {
-                form.reset();
-
+            if (!name || !phone || !message) {
                 Swal.fire({
-                    icon: "success",
-                    title: "¡Gracias por escribirnos!",
-                    text: messageText,
-                    confirmButtonText: "Genial ✨",
-                    confirmButtonColor: "#25d366",
-                    background: "linear-gradient(135deg, #4c1d95, #831843, #9a3412)",
+                    icon: "warning",
+                    title: "Campos incompletos",
+                    text: "Por favor completá todos los campos.",
+                    confirmButtonColor: "#facc15",
+                    background: "#1f2933",
                     color: "#ffffff"
                 });
-            } else {
-                throw new Error();
+                return;
             }
 
-        } catch (error) {
-            Swal.close();
+            if (!nameRegex.test(name)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Nombre inválido",
+                    text: "El nombre solo puede contener letras y espacios.",
+                    confirmButtonColor: "#ef4444",
+                    background: "#1f2933",
+                    color: "#ffffff"
+                });
+                return;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Teléfono inválido",
+                    text: "Ingresá un número válido (solo números, mínimo 8 dígitos).",
+                    confirmButtonColor: "#ef4444",
+                    background: "#1f2933",
+                    color: "#ffffff"
+                });
+                return;
+            }
+
+            if (message.length < 10) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Mensaje muy corto",
+                    text: "Por favor escribí un mensaje un poco más detallado.",
+                    confirmButtonColor: "#facc15",
+                    background: "#1f2933",
+                    color: "#ffffff"
+                });
+                return;
+            }
+
+            const isMobile = window.innerWidth <= 768;
+            const messageText = isMobile
+                ? "¡Mensaje enviado! 💜 Te escribimos por WhatsApp en breve."
+                : "¡Mensaje enviado con éxito! 💜 Te responderemos lo antes posible.";
+
             Swal.fire({
-                icon: "error",
-                title: "Error de envío",
-                text: "No se pudo enviar el mensaje. Intentá nuevamente.",
-                confirmButtonColor: "#ef4444",
-                background: "#1f2933",
-                color: "#ffffff"
+                title: "Enviando mensaje...",
+                text: "Por favor esperá un momento",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                background: "linear-gradient(135deg, #4c1d95, #831843, #9a3412)",
+                color: "#ffffff",
+                didOpen: () => Swal.showLoading()
             });
-        }
-    });
-</script>
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: formData,
+                    headers: { Accept: "application/json" }
+                });
+
+                Swal.close();
+
+                if (response.ok) {
+                    form.reset();
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Gracias por escribirnos!",
+                        text: messageText,
+                        confirmButtonText: "Genial ✨",
+                        confirmButtonColor: "#25d366",
+                        background: "linear-gradient(135deg, #4c1d95, #831843, #9a3412)",
+                        color: "#ffffff"
+                    });
+                } else {
+                    throw new Error();
+                }
+
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error de envío",
+                    text: "No se pudo enviar el mensaje. Intentá nuevamente.",
+                    confirmButtonColor: "#ef4444",
+                    background: "#1f2933",
+                    color: "#ffffff"
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

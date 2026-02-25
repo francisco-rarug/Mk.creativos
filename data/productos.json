@@ -132,11 +132,12 @@
       "id": "box-san-valentin",
       "name": "🎁 Box San Valentín",
       "description": "Un box especial con productos personalizados, pensado para sorprender.",
-      "price": "$30.000",
+      "price": "$20.000",
       "image": "recursos/Box-SanValentin.jpeg",
       "category": "box",
       "isBox": true,
       "video": "recursos/Video-BoxSanValentin.mp4",
-"longDescription": "Sorprendé a esa persona especial con un regalo lleno de amor, detalles y dulzura. Nuestro Box de San Valentín está diseñado para emocionar y crear momentos inolvidables, combinando recuerdos personalizados con pequeños detalles para compartir.\n\n✨ ¿Qué incluye?\n\n-🖼️ Cuadro personalizado, ideal para inmortalizar un recuerdo único\n-💕 Stickers (10 unidades) con diseños tiernos y románticos\n-🍬 Golosinas, para endulzar el momento\n-🔑 Llaveros para compartir, un símbolo perfecto de conexión y amor\n\nUn regalo completo, delicado y pensado con cariño, perfecto para celebrar el amor en todas sus formas 💘"    }
+      "longDescription": "Sorprendé a esa persona especial con un regalo lleno de amor, detalles y dulzura. Nuestro Box de San Valentín está diseñado para emocionar y crear momentos inolvidables, combinando recuerdos personalizados con pequeños detalles para compartir.\n\n✨ ¿Qué incluye?\n\n-🖼️ Cuadro personalizado, ideal para inmortalizar un recuerdo único\n-💕 Stickers (10 unidades) con diseños tiernos y románticos\n-🍬 Golosinas, para endulzar el momento\n-🔑 Llaveros para compartir, un símbolo perfecto de conexión y amor\n\nUn regalo completo, delicado y pensado con cariño, perfecto para celebrar el amor en todas sus formas 💘"
+    }
   ]
 }

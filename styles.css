@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: system-ui, sans-serif;
@@ -531,12 +534,37 @@ body {
   text-align: center;
   margin-bottom: 80px;
   animation: fadeUp 0.8s ease both;
+  text-align: center;
 }
 
 .about-logo {
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  padding: 14px 28px;
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+
+  border-radius: 999px;
+  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
 }
 
 .about-logo img {
@@ -590,6 +618,7 @@ body {
 .about-section {
   margin-bottom: 80px;
   animation: fadeUp 0.8s ease both;
+  text-align: center;
 }
 
 .section-title {
