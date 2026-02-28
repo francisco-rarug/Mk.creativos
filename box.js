@@ -1,64 +1,87 @@
-const storedBox = localStorage.getItem("selectedBox");
+document.addEventListener("DOMContentLoaded", () => {
 
-const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!window.location.pathname.includes("box.html")) return;
 
-if (!storedBox) {
-  window.location.href = "index.html";
-}
+  const storedBox = localStorage.getItem("selectedBox");
 
-const box = JSON.parse(storedBox);
+  if (!storedBox) {
+    window.location.href = "index.html";
+    return;
+  }
 
-document.getElementById("boxTitle").textContent = box.name;
+  let box;
+  try {
+    box = JSON.parse(storedBox);
+  } catch {
+    window.location.href = "index.html";
+    return;
+  }
 
-const boxImage = document.getElementById("boxImage");
-boxImage.src = box.image;
-boxImage.alt = box.name;
+  const titleEl = document.getElementById("boxTitle");
+  const imageEl = document.getElementById("boxImage");
+  const descEl = document.getElementById("boxDescription");
+  const videoEl = document.getElementById("boxVideo");
+  const playBtn = document.getElementById("playBtn");
 
-document.getElementById("boxDescription").innerHTML =
-  formatLongDescription(box.longDescription);
+  if (!titleEl || !imageEl || !descEl) return;
 
-const video = document.getElementById("boxVideo");
-const playBtn = document.getElementById("playBtn");
+  titleEl.textContent = box.name;
+  imageEl.src = box.image;
+  imageEl.alt = box.name;
+  descEl.innerHTML = formatLongDescription(box.longDescription);
 
-if (box.video && video) {
-  video.src = box.video;
-  video.muted = true;
-  video.volume = 0;
+  if (box.video && videoEl) {
+    videoEl.src = box.video;
+    videoEl.muted = true;
+    videoEl.volume = 0;
 
-  playBtn.addEventListener("click", () => {
-    video.play();
-    playBtn.classList.add("hidden");
+    playBtn?.addEventListener("click", () => {
+      videoEl.play();
+      playBtn.classList.add("hidden");
+    });
+
+    videoEl.addEventListener("pause", () => {
+      playBtn?.classList.remove("hidden");
+    });
+  } else {
+    document.querySelector(".box-video-wrapper")?.remove();
+  }
+
+  const phone = "5491131752110";
+  const message = encodeURIComponent(
+    `Hola 😊 Quiero consultar por el ${box.name}. ¿Me pasás info?`
+  );
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(btn => {
+    btn.href = `https://wa.me/${phone}?text=${message}`;
   });
+});
 
-  video.addEventListener("pause", () => {
-    playBtn.classList.remove("hidden");
-  });
-} else {
-  document.querySelector(".video-wrapper").style.display = "none";
-}
-
-const whatsappBtn = document.getElementById("whatsappBtn");
-
-const phone = "112345678";
-const message = encodeURIComponent(
-  `Hola 😊 Quiero consultar por el ${box.name}. ¿Me pasás info?`
-);
-
-whatsappBtn.href = `https://wa.me/${phone}?text=${message}`;
 
 function formatLongDescription(text) {
-  return text
-    .split("\n\n")
-    .map(block => {
-      if (block.startsWith("-")) {
-        const items = block
-          .split("\n")
-          .map(item => `<li>${item.replace("-", "")}</li>`)
-          .join("");
-        return `<ul class="box-list">${items}</ul>`;
+  const lines = text.split("\n");
+  let html = "";
+  let inList = false;
+
+  lines.forEach(line => {
+    if (line.trim().startsWith("-")) {
+      if (!inList) {
+        html += `<ul class="box-list">`;
+        inList = true;
       }
-      return `<p>${block}</p>`;
-    })
-    .join("");
+      html += `<li>${line.replace("-", "").trim()}</li>`;
+    } else {
+      if (inList) {
+        html += `</ul>`;
+        inList = false;
+      }
+      if (line.trim() !== "") {
+        html += `<p>${line}</p>`;
+      }
+    }
+  });
+
+  if (inList) html += `</ul>`;
+
+  return html;
 }

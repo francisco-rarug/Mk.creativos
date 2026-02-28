@@ -29,7 +29,7 @@
       "name": "📘 Álbum de Figuritas Personalizado (32 figuritas)",
       "description": "Un recuerdo único y divertido, creado a tu medida con 32 figuritas personalizadas para coleccionar y compartir.",
       "price": "$15.000",
-      "image": "recursos/AlbumFigu2.jpeg",
+      "image": "recursos/AlbumFigu3.jpeg",
       "category": "otros"
     },
     {
@@ -127,6 +127,30 @@
       "price": "$3.000",
       "image": "recursos/StickertsEscolares.jpeg",
       "category": "stickerts"
+    },
+     {
+      "id": 17,
+      "name": "✏️🎒 Etiquetas para cuadernos (6 unidades)",
+      "description": "Etiquetas personalizadas para cuadernos escolares, resistentes y coloridas, ideales para identificar cada materia con estilo",
+      "price": "$5.000",
+      "image": "recursos/Etiquetas.jpeg",
+      "category": "otros"
+    },
+     {
+      "id": 18,
+      "name": "🎒 Cuaderno para la facultad/colegio",
+      "description": "Cuadernos universitarios diseñados para organizar tu cursada, con plan de estudio, stickers, calendarios, post-its y secciones para parciales y exámenes entre otras cosas.",
+      "price": "$22.000",
+      "image": "recursos/CuadernoFacu.jpeg",
+      "category": "otros"
+    },
+     {
+      "id": 19,
+      "name": "🏫 Separadores (10 unidades)",
+      "description": "Separadores de materias personalizados, ideales para organizar apuntes y mantener cada materia siempre a mano.",
+      "price": "$5.000",
+      "image": "recursos/Separadores.jpeg",
+      "category": "otros"
     },
     {
       "id": "box-san-valentin",
